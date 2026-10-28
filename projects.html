@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects | Md. Akkhor Hasan</title>
+<meta name="description" content="Mechatronics engineer working on AI-enhanced digital twins for lithium-ion battery health, physics-informed machine learning and robot control. RUET, Bangladesh.">
+<meta name="theme-color" content="#0c0a1d">
+<meta property="og:title" content="Md. Akkhor Hasan">
+<meta property="og:description" content="Mechatronics engineer working on AI-enhanced digital twins for lithium-ion battery health, physics-informed machine learning and robot control. RUET, Bangladesh.">
+<meta property="og:image" content="assets/akkhor-hasan.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@0,300;0,400;1,400&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body><nav class="wrap section-nav" aria-label="Main navigation"><a class="brand" href="index.html">AKKHOR HASAN</a><a href="index.html">Home</a><a href="research.html">Research</a><a href="publications.html">Publications</a><a aria-current="page" href="projects.html">Projects</a><a href="about.html">About</a><a href="mailto:hasanakkhor@gmail.com">Email</a></nav>
+<header class="wrap page-heading"><p class="eyebrow">MD. AKKHOR HASAN / PROJECTS</p><h1 class="name">Projects</h1><p class="where">Robot navigation, control systems and mechatronic builds. Simulation first, then hardware.</p></header>
+<main><section class="wrap" id="robotics">
+  <div class="col">
+    <h2>Autonomy and control</h2>
+    <p>Navigation and control projects, built and tested in simulation with realistic dynamics and disturbances.</p>
+  </div>
+  <div class="project-grid">
+    <article class="project"><img class="cover" src="assets/quadrotor-slam.jpg" alt="MATLAB mission view: a quadrotor's 3D path past trees and obstacles, a live occupancy-grid SLAM map, and telemetry showing mission landed at waypoint 45 of 45 with 0.025 m position error." loading="lazy"><p class="tags">MATLAB · 6-DOF · LiDAR · SLAM</p><h3>Autonomous quadrotor navigation and SLAM</h3><p>Quadrotor navigation with full 6-DOF dynamics and LiDAR-based occupancy-grid SLAM, tested under stochastic wind. In this run it reaches all 45 waypoints and lands with a 0.025 m localization error. September 2026.</p><a target="_blank" rel="noopener" href="https://github.com/Akkhor07/Autonomous-Drone-Navigation-Obstacle-Avoidance">View on GitHub ↗</a></article>
+    <article class="project"><img class="light" src="assets/mobile-robot-nav.png" alt="Four MATLAB panels: a Theta* path through obstacles, a zoomed robot with LiDAR rays, a live occupancy grid map, and speed and distance-to-goal over time." loading="lazy"><p class="tags">Theta* · Pure Pursuit · APF</p><h3>Mobile robot navigation stack</h3><p>Theta* path planning, Pure Pursuit tracking and artificial potential fields, with LiDAR and a live occupancy grid. The robot reaches its goal in about 23 seconds with zero collisions. September 2026.</p><a target="_blank" rel="noopener" href="https://github.com/Akkhor07/Mobile-Robot-Navigation-Simulation">View on GitHub ↗</a></article>
+  </div>
+  <ul class="repos" style="margin-top:44px">
+    <li><div class="r"><b style="font:600 17px var(--sans)">Digital twin for battery health</b><p>The hardware-in-the-loop system from my thesis: physics models and a hybrid GRU–XGBoost model estimating SOH, SOC and RUL, with fan-based thermal control. <a href='research.html#twin'>See the system</a>.</p></div><span class="m">MATLAB/Simulink · Arduino</span></li>
+  </ul>
+</section><section class="wrap" id="engineering">
+  <div class="col">
+    <h2>Mechatronic builds</h2>
+    <p>Hardware projects at the Department of Mechatronics Engineering, RUET, and in student robotics competitions. Each combines mechanical design, sensing and control.</p>
+  </div>
+  <div class="project-grid">
+    <article class="project"><img class="cover" src="assets/motor-construction.jpg" alt="A hand-built DC motor: a copper-wound armature between two ferrite magnets on a wooden frame, with a speed sensor and slotted disc on the shaft." loading="lazy"><p class="tags">Group project · Motor design · Feedback control</p><h3>Smart DC motor with autonomous speed control</h3><p>We built the motor itself, from the wound armature to the magnet housing, then closed the loop: PWM drive with real-time speed feedback holds a target RPM under changing load. A keypad sets the target. Group project, 2022.</p><a target="_blank" rel="noopener" href="https://github.com/abrar-nazib/motor_control">Team repository on GitHub ↗</a></article>
+    <article class="project"><img class="cover" src="assets/battle-bot.jpg" alt="Two metal-clad battle robots on a competition arena at ROBOTRONICS 2.0; the team's robot, with blue wheels, is on the left." loading="lazy"><p class="tags">Competition robotics · Semifinalist</p><h3>Battle bot for ROBOTRONICS 2.0</h3><p>Our team’s combat robot (left) reached the semifinals of ROBO Wrestling at ROBOTRONICS 2.0, organized by the Robotic Society of RUET.</p></article>
+  </div>
+  <div class="work pair">
+    <figure><img src="assets/motor-wiring.jpg" alt="The motor project board: the DC motor, an Arduino UNO, a motor driver, a breadboard, a 4x4 keypad and an LCD wired together." loading="lazy"><p>The complete motor project, with the Arduino, driver, keypad input and LCD.</p></figure>
+    <figure><img src="assets/motor-schematic.jpg" alt="Wiring schematic: a 4x4 keypad, an A4988 driver, a motor and a rotary encoder connected to an Arduino UNO." loading="lazy"><p>Wiring schematic for the motor controller: keypad, driver and rotary encoder on an Arduino UNO.</p></figure>
+  </div>
+  <div class="project-grid" style="margin-top:56px">
+    <article class="project"><img class="cover" src="assets/csrt-tracking.jpg" alt="A webcam mounted on a servo through a yellow gear, wired to an Arduino board with buck converters on a white base." loading="lazy"><p class="tags">Group project · OpenCV CSRT · PID</p><h3>Tracking and stabilization with computer vision and PID control</h3><p>A webcam on a servo follows a moving target. OpenCV’s CSRT tracker locates the target in each frame, and a PID controller turns the servo to keep it centred. Evaluated on rise time, overshoot and steady-state error. Group project, 2023.</p></article>
+    <article class="project"><img class="cover" src="assets/robotic-arm.jpg" alt="A multi-DOF robotic arm with aluminium brackets, servo motors and a white gripper, wired to an Arduino on a desk." loading="lazy"><p class="tags">Group project · SolidWorks · Arduino</p><h3>Industrial robotic arm prototype</h3><p>A multi-DOF pick-and-place arm designed in SolidWorks and built with servo motors and an Arduino Mega, with inverse kinematics for precise positioning. Group project, 2023.</p></article>
+  </div>
+  <p class="more">Code and experiments are on <a target="_blank" rel="noopener" href="https://github.com/Akkhor07">github.com/Akkhor07</a>.</p>
+</section></main>
+<footer class="wrap" id="contact"><p class="eyebrow">LET’S CONNECT</p><h2>Research, ideas and collaboration</h2><p class="where">Interested in battery prognostics, digital twins or control for robotic systems? I’m open to research collaboration and graduate study opportunities.</p><div class="contact"><a href="mailto:hasanakkhor@gmail.com">Email me</a><a target="_blank" rel="noopener" href="https://scholar.google.com/citations?user=YzFIFLMAAAAJ">Google Scholar</a><a target="_blank" rel="noopener" href="https://orcid.org/0009-0005-3361-2235">ORCID</a><a target="_blank" rel="noopener" href="https://www.researchgate.net/profile/Md-Hasan-910">ResearchGate</a><a target="_blank" rel="noopener" href="https://github.com/Akkhor07">GitHub</a><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/akkhor07/">LinkedIn</a></div><p class="fine">Md. Akkhor Hasan · Mechatronics engineering, RUET</p></footer>
+</body></html>

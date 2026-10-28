@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research | Md. Akkhor Hasan</title>
+<meta name="description" content="Mechatronics engineer working on AI-enhanced digital twins for lithium-ion battery health, physics-informed machine learning and robot control. RUET, Bangladesh.">
+<meta name="theme-color" content="#0c0a1d">
+<meta property="og:title" content="Md. Akkhor Hasan">
+<meta property="og:description" content="Mechatronics engineer working on AI-enhanced digital twins for lithium-ion battery health, physics-informed machine learning and robot control. RUET, Bangladesh.">
+<meta property="og:image" content="assets/akkhor-hasan.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@0,300;0,400;1,400&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body><nav class="wrap section-nav" aria-label="Main navigation"><a class="brand" href="index.html">AKKHOR HASAN</a><a href="index.html">Home</a><a aria-current="page" href="research.html">Research</a><a href="publications.html">Publications</a><a href="projects.html">Projects</a><a href="about.html">About</a><a href="mailto:hasanakkhor@gmail.com">Email</a></nav>
+<header class="wrap page-heading"><p class="eyebrow">MD. AKKHOR HASAN / RESEARCH</p><h1 class="name">Research</h1><p class="where">Learning-based models of physical systems that are accurate enough to act on, from battery cells to chemical reactors and mobile robots.</p></header>
+<main><section class="wrap" id="research">
+  <div class="col">
+    <h2>What I work on</h2>
+    <p>Batteries, reactors and robots all degrade, drift or face disturbances that a fixed model does not capture. I build models that learn from data while respecting the underlying physics, then test them in closed loop, where predictions drive real decisions.</p>
+    <p>My interests include physics-informed machine learning for energy and process systems; battery degradation-mode diagnostics, identifiability and lifetime prognostics; neural-network surrogates for model predictive control; robustness and reproducibility of learned models through multi-seed and Monte Carlo evaluation; digital twins with hardware-in-the-loop deployment; and autonomous robot navigation and control.</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>1</b><span>paper accepted at IEEE CSDE 2026</span></div>
+    <div class="stat"><b>2</b><span>journal manuscripts under review</span></div>
+    <div class="stat"><b>3</b><span>real-cell datasets in my current study</span></div>
+    <div class="stat"><b>HIL</b><span>hardware-in-the-loop deployment</span></div>
+  </div>
+</section><section class="wrap">
+  <div class="col">
+    <h2>An AI-enhanced digital twin for battery health</h2>
+    <p>My undergraduate thesis, <em>AI-Enhanced Digital Twin for Predictive Analytics of Battery Health and Degradation Dynamics</em>, builds a real-time digital twin that mirrors a lithium-ion battery under different operating conditions.</p>
+    <p>The twin runs in MATLAB/Simulink with two-way communication to the hardware. Physics-based models (a 2RC equivalent circuit, a lumped thermal model and an aging model) work alongside a hybrid GRU–XGBoost model trained on NASA battery degradation data. Together they estimate state of health (SOH), state of charge (SOC) and remaining useful life (RUL). When the temperature crosses a threshold, the twin switches on a DC fan. The aim is maintenance that happens before failure, and better energy use in battery-powered systems.</p>
+  </div>
+  <figure class="figure" style="max-width:none">
+    <ol class="twin" aria-label="Hardware-in-the-loop digital twin, step by step">
+      <li><span class="k">Sensing</span><b>Live cell data</b><span>DS18B20 temperature and INA219 current and voltage sensors, read by an Arduino UNO.</span></li>
+      <li><span class="k">State estimation</span><b>SOC</b><span>Coulomb counting alongside an unscented Kalman filter, in MATLAB/Simulink.</span></li>
+      <li><span class="k">Physics models</span><b>ECM · thermal · aging</b><span>A 2RC equivalent circuit, a lumped thermal model for core temperature, and an aging model.</span></li>
+      <li><span class="k">AI layer</span><b>SOH prediction</b><span>A hybrid GRU–XGBoost model, trained on NASA battery degradation data.</span></li>
+      <li class="act"><span class="k">Action</span><b>Fan command</b><span>Above the temperature threshold, a second Arduino switches on a DC fan.</span></li>
+    </ol>
+    <p class="return">control signal returns to the hardware</p>
+    <figcaption>The hardware-in-the-loop digital twin from my undergraduate thesis. Data moves from the cell to the models, and decisions move back to the cell. Accepted at IEEE CSDE 2026.</figcaption>
+  </figure>
+</section><section class="wrap" id="twin">
+  <div class="col">
+    <h2>Inside the digital twin</h2>
+    <p>Two Arduino UNO boards connect the hardware to the models over USB. One reads the sensors, and the other drives the fan. In between, every signal passes through an estimator or a model before it reaches the dashboard.</p>
+  </div>
+  <div class="work">
+    <figure class="full diagram"><img src="assets/twin-architecture.png" alt="System architecture: DS18B20 and INA219 sensors feed an Arduino UNO; voltage, current and temperature go to a UKF block, Coulomb counting, a 2RC ECM model, a thermal model and an aging model; a feature vector feeds an SOH prediction block; a threshold check sends a fan command to a second Arduino and DC fan; results appear on a dashboard." width="1306" height="651" loading="lazy"><p>System architecture. Sensor data flows through state estimation, physics models and the machine learning layer to the fan command and the live dashboard.</p></figure>
+    <figure><img src="assets/dashboard-fan-on.jpg" alt="Dashboard with core temperature 35.0 C and fan on." width="1400" height="626" loading="lazy"><p>Fan on. SOC 94%, SOH 99.23%, core temperature 35.0&nbsp;°C, above the threshold.</p></figure>
+    <figure><img src="assets/dashboard-fan-off.jpg" alt="Dashboard with core temperature 27.3 C and fan off." width="1400" height="626" loading="lazy"><p>Fan off. SOC 73%, SOH 96.02%, core temperature 27.3&nbsp;°C, back below the threshold.</p></figure>
+    <figure class="plot"><img src="assets/fig-voltage-validation.png" alt="Plot of predicted terminal voltage and measured sensor voltage over 214 to 228 seconds; both lines stay near 3.34 V and overlap closely." width="576" height="292" loading="lazy"><p>Predicted terminal voltage against measured sensor voltage. The close match confirms the equivalent-circuit parameters before the AI layer is evaluated.</p></figure>
+    <figure class="plot"><img src="assets/fig-soh-live.png" alt="Plot of live XGBoost SOH and physics-based aging model SOH over 30 to 200 seconds; both lines stay near 0.97 to 0.98." width="712" height="302" loading="lazy"><p>Live SOH from the XGBoost model against the physics-based aging model. The two estimates stay close throughout the run.</p></figure>
+  </div>
+</section><section class="wrap">
+  <div class="col">
+    <h2>Physics-informed learning</h2>
+    <p>Purely data-driven models can fit well and still fail outside their training data. My current work asks when physics-informed models do better, and how to test that fairly.</p>
+  </div>
+  <ul class="nets">
+    <li><b>Surrogates for model predictive control</b><span>Physics-informed and black-box neural networks inside an MPC loop for a nonisothermal CSTR, compared over seven random seeds with Monte Carlo robustness analysis.</span></li>
+    <li><b>Battery degradation modes</b><span>Estimating degradation modes from partial discharge windows using a model trained only on simulation, then validated on two cell chemistries.</span></li>
+    <li><b>Do the estimates help?</b><span>Testing whether degradation-mode estimates forecast battery life and plan check-ups better than capacity alone, on three real-cell datasets.</span></li>
+  </ul>
+</section><section class="wrap">
+  <div class="col">
+    <h2>Control for robotic systems</h2>
+    <p>Alongside the learning work, I build and simulate robotic systems end to end: quadrotor navigation and SLAM with 6-DOF dynamics, LiDAR and stochastic wind in MATLAB; a mobile robot navigation stack combining Theta* planning, Pure Pursuit tracking and artificial potential fields; and vision-based PID stabilization with OpenCV.</p>
+    <p><a href="projects.html">See the projects</a>.</p>
+  </div>
+</section></main>
+<footer class="wrap" id="contact"><p class="eyebrow">LET’S CONNECT</p><h2>Research, ideas and collaboration</h2><p class="where">Interested in battery prognostics, digital twins or control for robotic systems? I’m open to research collaboration and graduate study opportunities.</p><div class="contact"><a href="mailto:hasanakkhor@gmail.com">Email me</a><a target="_blank" rel="noopener" href="https://scholar.google.com/citations?user=YzFIFLMAAAAJ">Google Scholar</a><a target="_blank" rel="noopener" href="https://orcid.org/0009-0005-3361-2235">ORCID</a><a target="_blank" rel="noopener" href="https://www.researchgate.net/profile/Md-Hasan-910">ResearchGate</a><a target="_blank" rel="noopener" href="https://github.com/Akkhor07">GitHub</a><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/akkhor07/">LinkedIn</a></div><p class="fine">Md. Akkhor Hasan · Mechatronics engineering, RUET</p></footer>
+</body></html>

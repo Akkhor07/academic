@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home | Md. Akkhor Hasan</title>
+<meta name="description" content="Mechatronics engineer working on AI-enhanced digital twins for lithium-ion battery health, physics-informed machine learning and robot control. RUET, Bangladesh.">
+<meta name="theme-color" content="#0c0a1d">
+<meta property="og:title" content="Md. Akkhor Hasan">
+<meta property="og:description" content="Mechatronics engineer working on AI-enhanced digital twins for lithium-ion battery health, physics-informed machine learning and robot control. RUET, Bangladesh.">
+<meta property="og:image" content="assets/akkhor-hasan.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:ital,wght@0,300;0,400;1,400&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body><nav class="wrap section-nav" aria-label="Main navigation"><a class="brand" href="index.html">AKKHOR HASAN</a><a aria-current="page" href="index.html">Home</a><a href="research.html">Research</a><a href="publications.html">Publications</a><a href="projects.html">Projects</a><a href="about.html">About</a><a href="mailto:hasanakkhor@gmail.com">Email</a></nav>
+<header class="wrap hero">
+  <div>
+  <p class="eyebrow">DIGITAL TWINS · BATTERY PROGNOSTICS · CONTROL AND ROBOTICS</p><h1 class="name">Md. Akkhor&nbsp;Hasan</h1>
+  <p class="lede">Machine learning and control for energy systems and robots. From battery degradation models to hardware that acts on their predictions.</p>
+  <p class="where">Mechatronics engineer from Rajshahi University of Engineering &amp; Technology (RUET), Bangladesh. My thesis built an AI-enhanced digital twin that tracks the health of lithium-ion batteries in real time.</p>
+  <div class="hero-actions"><a class="primary" href="research.html">Explore my research ↗</a><a href="publications.html">Read my papers</a></div>
+  <div class="meta"><a href="mailto:hasanakkhor@gmail.com">hasanakkhor@gmail.com</a><a target="_blank" rel="noopener" href="https://scholar.google.com/citations?user=YzFIFLMAAAAJ">Google Scholar</a><a target="_blank" rel="noopener" href="https://orcid.org/0009-0005-3361-2235">ORCID</a><a target="_blank" rel="noopener" href="https://www.researchgate.net/profile/Md-Hasan-910">ResearchGate</a><a target="_blank" rel="noopener" href="https://github.com/Akkhor07">GitHub</a><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/akkhor07/">LinkedIn</a></div>
+  </div>
+  <figure class="portrait"><img src="assets/akkhor-hasan.jpg" alt="Portrait of Md. Akkhor Hasan in a white shirt and red tie." width="640" height="800"></figure>
+</header>
+<main><section class="wrap" style="padding-top:24px"><p class="eyebrow">THESIS AT A GLANCE</p><h2>A battery that reports its own health</h2>
+  <figure class="figure" style="max-width:none">
+    <ol class="twin" aria-label="Hardware-in-the-loop digital twin, step by step">
+      <li><span class="k">Sensing</span><b>Live cell data</b><span>DS18B20 temperature and INA219 current and voltage sensors, read by an Arduino UNO.</span></li>
+      <li><span class="k">State estimation</span><b>SOC</b><span>Coulomb counting alongside an unscented Kalman filter, in MATLAB/Simulink.</span></li>
+      <li><span class="k">Physics models</span><b>ECM · thermal · aging</b><span>A 2RC equivalent circuit, a lumped thermal model for core temperature, and an aging model.</span></li>
+      <li><span class="k">AI layer</span><b>SOH prediction</b><span>A hybrid GRU–XGBoost model, trained on NASA battery degradation data.</span></li>
+      <li class="act"><span class="k">Action</span><b>Fan command</b><span>Above the temperature threshold, a second Arduino switches on a DC fan.</span></li>
+    </ol>
+    <p class="return">control signal returns to the hardware</p>
+    <figcaption>The hardware-in-the-loop digital twin from my undergraduate thesis. Data moves from the cell to the models, and decisions move back to the cell. Accepted at IEEE CSDE 2026.</figcaption>
+  </figure>
+  <figure class="figure shot"><img src="assets/dashboard-fan-on.jpg" alt="Digital twin dashboard: a battery gauge, a cell graphic with four charge bars and a readout showing SOC 94%, SOH 99.23% (Excellent), RUL 149 cycles, core temperature 35.0 C and fan on." width="1400" height="626" loading="lazy"><figcaption>The live dashboard during a run. Core temperature has reached 35.0&nbsp;°C, so the fan is on. <a href="research.html#twin">See how it works</a>.</figcaption></figure>
+</section><section class="wrap"><p class="eyebrow">EXPLORE THE PORTFOLIO</p><h2>From models to working systems</h2><div class="overview-grid"><article class="overview-card"><h3>Research</h3><p>Digital twins for battery health, physics-informed neural networks and model predictive control.</p><a href="research.html">Explore research ↗</a></article><article class="overview-card"><h3>Publications</h3><p>One paper accepted at IEEE CSDE 2026, two journal manuscripts under review and one in preparation.</p><a href="publications.html">Explore publications ↗</a></article><article class="overview-card"><h3>Projects</h3><p>Quadrotor navigation and SLAM, a mobile robot navigation stack, vision-based PID tracking and a robotic arm.</p><a href="projects.html">Explore projects ↗</a></article><article class="overview-card"><h3>About</h3><p>Education, industry experience, leadership on campus and technical skills.</p><a href="about.html">Explore about ↗</a></article></div></section></main>
+<footer class="wrap" id="contact"><p class="eyebrow">LET’S CONNECT</p><h2>Research, ideas and collaboration</h2><p class="where">Interested in battery prognostics, digital twins or control for robotic systems? I’m open to research collaboration and graduate study opportunities.</p><div class="contact"><a href="mailto:hasanakkhor@gmail.com">Email me</a><a target="_blank" rel="noopener" href="https://scholar.google.com/citations?user=YzFIFLMAAAAJ">Google Scholar</a><a target="_blank" rel="noopener" href="https://orcid.org/0009-0005-3361-2235">ORCID</a><a target="_blank" rel="noopener" href="https://www.researchgate.net/profile/Md-Hasan-910">ResearchGate</a><a target="_blank" rel="noopener" href="https://github.com/Akkhor07">GitHub</a><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/akkhor07/">LinkedIn</a></div><p class="fine">Md. Akkhor Hasan · Mechatronics engineering, RUET</p></footer>
+</body></html>
