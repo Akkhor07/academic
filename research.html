@@ -34,15 +34,15 @@
   <div class="col">
     <h2>An AI-enhanced digital twin for battery health</h2>
     <p>My undergraduate thesis, <em>AI-Enhanced Digital Twin for Predictive Analytics of Battery Health and Degradation Dynamics</em>, builds a real-time digital twin that mirrors a lithium-ion battery under different operating conditions.</p>
-    <p>The twin runs in MATLAB/Simulink with two-way communication to the hardware. Physics-based models (a 2RC equivalent circuit, a lumped thermal model and an aging model) work alongside a hybrid GRU–XGBoost model trained on NASA battery degradation data. Together they estimate state of health (SOH), state of charge (SOC) and remaining useful life (RUL). When the temperature crosses a threshold, the twin switches on a DC fan. The aim is maintenance that happens before failure, and better energy use in battery-powered systems.</p>
+    <p>The twin runs in MATLAB/Simulink with two-way communication to the hardware. Physics-based models (a 2RC equivalent circuit, a lumped thermal model and an aging model) work alongside a machine-learning layer for state of health (SOH). I compared seven models, including GRU–XGBoost, LSTM and CNN variants, under leave-one-battery-out cross-validation on the NASA battery aging dataset. Standalone XGBoost had the lowest error and runs in the live loop. When the measured surface temperature crosses a threshold, the twin switches on a DC fan. The aim is maintenance that happens before failure, and better energy use in battery-powered systems.</p>
   </div>
   <figure class="figure" style="max-width:none">
     <ol class="twin" aria-label="Hardware-in-the-loop digital twin, step by step">
       <li><span class="k">Sensing</span><b>Live cell data</b><span>DS18B20 temperature and INA219 current and voltage sensors, read by an Arduino UNO.</span></li>
       <li><span class="k">State estimation</span><b>SOC</b><span>Coulomb counting alongside an unscented Kalman filter, in MATLAB/Simulink.</span></li>
       <li><span class="k">Physics models</span><b>ECM · thermal · aging</b><span>A 2RC equivalent circuit, a lumped thermal model for core temperature, and an aging model.</span></li>
-      <li><span class="k">AI layer</span><b>SOH prediction</b><span>A hybrid GRU–XGBoost model, trained on NASA battery degradation data.</span></li>
-      <li class="act"><span class="k">Action</span><b>Fan command</b><span>Above the temperature threshold, a second Arduino switches on a DC fan.</span></li>
+      <li><span class="k">AI layer</span><b>SOH prediction</b><span>Seven models compared on the NASA battery aging dataset; XGBoost runs in the live loop.</span></li>
+      <li class="act"><span class="k">Action</span><b>Fan command</b><span>When the measured surface temperature crosses its threshold, a DC fan switches on.</span></li>
     </ol>
     <p class="return">control signal returns to the hardware</p>
     <figcaption>The hardware-in-the-loop digital twin from my undergraduate thesis. Data moves from the cell to the models, and decisions move back to the cell. Accepted at IEEE CSDE 2026.</figcaption>
@@ -54,8 +54,8 @@
   </div>
   <div class="work">
     <figure class="full diagram"><img src="assets/twin-architecture.png" alt="System architecture: DS18B20 and INA219 sensors feed an Arduino UNO; voltage, current and temperature go to a UKF block, Coulomb counting, a 2RC ECM model, a thermal model and an aging model; a feature vector feeds an SOH prediction block; a threshold check sends a fan command to a second Arduino and DC fan; results appear on a dashboard." width="1306" height="651" loading="lazy"><p>System architecture. Sensor data flows through state estimation, physics models and the machine learning layer to the fan command and the live dashboard.</p></figure>
-    <figure><img src="assets/dashboard-fan-on.jpg" alt="Dashboard with core temperature 35.0 C and fan on." width="1400" height="626" loading="lazy"><p>Fan on. SOC 94%, SOH 99.23%, core temperature 35.0&nbsp;°C, above the threshold.</p></figure>
-    <figure><img src="assets/dashboard-fan-off.jpg" alt="Dashboard with core temperature 27.3 C and fan off." width="1400" height="626" loading="lazy"><p>Fan off. SOC 73%, SOH 96.02%, core temperature 27.3&nbsp;°C, back below the threshold.</p></figure>
+    <figure><img src="assets/dashboard-fan-on.jpg" alt="Dashboard with surface temperature 32.1 C and fan on." width="1400" height="626" loading="lazy"><p>Fan on. SOC 94%, SOH 99.23%, surface temperature 32.1&nbsp;°C, above the threshold.</p></figure>
+    <figure><img src="assets/dashboard-fan-off.jpg" alt="Dashboard with surface temperature 28.0 C and fan off." width="1400" height="626" loading="lazy"><p>Fan off. SOC 73%, SOH 96.02%, surface temperature 28.0&nbsp;°C, back below the threshold.</p></figure>
     <figure class="plot"><img src="assets/fig-voltage-validation.png" alt="Plot of predicted terminal voltage and measured sensor voltage over 214 to 228 seconds; both lines stay near 3.34 V and overlap closely." width="576" height="292" loading="lazy"><p>Predicted terminal voltage against measured sensor voltage. The close match confirms the equivalent-circuit parameters before the AI layer is evaluated.</p></figure>
     <figure class="plot"><img src="assets/fig-soh-live.png" alt="Plot of live XGBoost SOH and physics-based aging model SOH over 30 to 200 seconds; both lines stay near 0.97 to 0.98." width="712" height="302" loading="lazy"><p>Live SOH from the XGBoost model against the physics-based aging model. The two estimates stay close throughout the run.</p></figure>
   </div>
@@ -65,9 +65,9 @@
     <p>Purely data-driven models can fit well and still fail outside their training data. My current work asks when physics-informed models do better, and how to test that fairly.</p>
   </div>
   <ul class="nets">
-    <li><b>Surrogates for model predictive control</b><span>Physics-informed and black-box neural networks inside an MPC loop for a nonisothermal CSTR, compared over seven random seeds with Monte Carlo robustness analysis.</span></li>
-    <li><b>Battery degradation modes</b><span>Estimating degradation modes from partial discharge windows using a model trained only on simulation, then validated on two cell chemistries.</span></li>
-    <li><b>Do the estimates help?</b><span>Testing whether degradation-mode estimates forecast battery life and plan check-ups better than capacity alone, on three real-cell datasets.</span></li>
+    <li><b>Surrogates for model predictive control</b><span>A PINN and a black-box network of identical architecture inside the same offset-free nonlinear MPC of an unstable CSTR, over seven seeds. Physics-informed training did not significantly improve nominal tracking, but thermal runaway fell from 71 to 21 of 112 disturbed runs.</span></li>
+    <li><b>Battery degradation modes</b><span>A Cramér–Rao analysis of an SPMe shows two partial windows at different C-rates make LLI and LAM identifiable. A CNN-LSTM encoder trained only on simulation starts a differentiable SPMe fit, reaching 3 to 5 pp on 16 NMC811 cells; it is also tested on 20 LFP cells.</span></li>
+    <li><b>Do the estimates help?</b><span>On 79 cells from three open datasets, with margins fixed in advance, mode estimates did not beat capacity alone for life forecasts. A label-free misfit rule matched random wide check-up windows with 30% less check-up time.</span></li>
   </ul>
 </section><section class="wrap">
   <div class="col">
